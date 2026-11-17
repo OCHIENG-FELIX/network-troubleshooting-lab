@@ -20,20 +20,25 @@ It focuses on identifying network connectivity problems, investigating their pos
 - Tools: Command Prompt, Windows Network Settings, Network and Sharing Center, Device Manager
 - Additional tools: `ipconfig`, `ping`, `tracert`, `nslookup`
 
-## Project Structure
-The project will contain:
+## Project Documentation
 
-- `documentation/` – Networking concepts and diagnostic procedures.
-- `scenarios/` – Common network troubleshooting cases.
-- `checklists/` – Network troubleshooting and configuration checklists.
+### Documentation
+- [Networking Fundamentals](documentation/networking-fundamentals.md)
+- [Network Diagnostic Tools](documentation/network-diagnostic-tools.md)
+- [IP Configuration Guide](documentation/ip-configuration-guide.md)
 
-## Planned Troubleshooting Scenarios
-1. No internet connectivity.
-2. DNS resolution failure.
-3. Incorrect IP configuration.
-4. Default gateway connectivity problems.
-5. Intermittent network connection.
-6. Network adapter and driver problems.
+### Troubleshooting Scenarios
+- [No Internet Connectivity](scenarios/01-no-internet-connectivity.md)
+- [DNS Resolution Failure](scenarios/02-dns-resolution-failure.md)
+- [Incorrect IP Configuration](scenarios/03-incorrect-ip-configuration.md)
+- [Default Gateway Issues](scenarios/04-default-gateway-issues.md)
+- [Intermittent Network Connection](scenarios/05-intermittent-network-connection.md)
+- [Network Adapter and Driver Issues](scenarios/06-network-adapter-driver-issues.md)
+
+### Checklists
+- [Network Troubleshooting Checklist](checklists/network-troubleshooting-checklist.md)
+- [Network Configuration Checklist](checklists/network-configuration-checklist.md)
+
 
 ## Troubleshooting Methodology
 Each scenario follows a structured process:
@@ -57,7 +62,10 @@ Each scenario follows a structured process:
 - Problem-solving and technical documentation
 
 ## Project Status
-Documentation preparation in progress. Practical testing will be conducted in a later phase.
+Documentation completed. Six network troubleshooting scenarios
+and two checklists have been prepared.
+
+Practical testing and validation are pending.
 
 ## Author
 **Felix Otieno Ochieng'**
