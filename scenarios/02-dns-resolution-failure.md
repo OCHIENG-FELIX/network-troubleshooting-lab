@@ -1,38 +1,85 @@
-# Scenario 2: DNS Resolution Failure
+## Practical Investigation Results
 
-## Problem Description
-A user can potentially reach external IP addresses but cannot access websites using domain names.
+### Objective
+Investigate repeated DNS request timeouts when using the configured DNS server.
 
-## Symptoms
-- Websites fail to load by domain name.
-- Applications report name-resolution errors.
-- Direct IP connectivity may still work.
+### Environment
+- Client IPv4 address: `10.63.196.144`
+- Configured DNS server: `10.63.196.90`
+- Default gateway: `10.63.196.90`
+- Comparison DNS server: `8.8.8.8`
 
-## Possible Causes
-- Incorrect DNS server configuration.
-- DNS server unavailable.
-- DNS cache problems.
-- Network restrictions or firewall rules.
+### Tests Performed
 
-## Diagnostic Procedure
+**1. DNS server connectivity**
 
-1. Run `ipconfig /all`.
-2. Identify the configured DNS servers.
-3. Run `nslookup google.com`.
-4. Compare DNS results using an approved alternative DNS server if authorized.
-5. Test IP connectivity separately.
-6. Review recent network configuration changes.
+Command:
+```cmd
+ping 10.63.196.90
+```
 
-## Possible Resolutions
-- Correct DNS settings with authorization.
-- Restore the approved DNS server configuration.
-- Flush the DNS cache using `ipconfig /flushdns`.
-- Escalate DNS server or network infrastructure issues.
+Result:
+- Packets sent: 4
+- Packets received: 4
+- Packet loss: 0%
+- Average response time: 5 ms
 
-## Verification
-- Run `nslookup` again.
-- Confirm domain names resolve correctly.
-- Test access to relevant websites.
+Conclusion: The configured DNS server was reachable at the IP level.
 
-## Status
-Documentation prepared. Practical testing pending.
+**2. Configured DNS server – Microsoft**
+
+Command:
+```cmd
+nslookup microsoft.com 10.63.196.90
+```
+
+Result: Initial DNS request timeout after 2 seconds, followed by successful resolution.
+
+**3. Configured DNS server – Google**
+
+Command:
+```cmd
+nslookup google.com 10.63.196.90
+```
+
+Result: Initial DNS request timeout after 2 seconds, followed by successful resolution.
+
+**4. Public DNS comparison – Microsoft**
+
+Command:
+```cmd
+nslookup microsoft.com 8.8.8.8
+```
+
+Result: Successful resolution without an observed timeout.
+
+**5. Public DNS comparison – Google**
+
+Command:
+```cmd
+nslookup google.com 8.8.8.8
+```
+
+Result: Successful resolution without an observed timeout.
+
+### Findings
+
+- The configured DNS server was reachable.
+- Both tested domains eventually resolved through the configured DNS server.
+- Both domains resolved through Google Public DNS without the observed initial timeout.
+- The repeated delays suggest a possible issue with the configured DNS server or its upstream forwarding service.
+
+### Conclusion
+
+No persistent DNS resolution failure was established. However, repeated initial timeouts were observed when querying the configured DNS server.
+
+Further investigation by a network administrator would be required to identify the underlying cause. No DNS settings were changed during testing.
+
+### Practical Learning
+
+This exercise demonstrated how to:
+- Test DNS server connectivity using `ping`.
+- Query DNS servers directly using `nslookup`.
+- Compare configured DNS with a public DNS resolver.
+- Distinguish DNS response delays from complete DNS resolution failure.
+- Record findings and identify appropriate escalation procedures.
