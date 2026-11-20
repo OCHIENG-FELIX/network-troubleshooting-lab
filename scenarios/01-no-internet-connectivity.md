@@ -150,6 +150,6 @@ No network configuration changes were made.
 
 **Status:** Practical investigation completed.
 
-The exercise demonstrated how to systematically investigate network connectivity and distinguish between local network, external IP connectivity, and DNS resolution.
+The exercise demonstrates how to systematically investigate network connectivity and distinguish between local network, external IP connectivity, and DNS resolution.
 
 The investigation also demonstrated the importance of interpreting diagnostic results before making network configuration changes.
